@@ -1,12 +1,14 @@
-import { Button } from '@/components/ui/button';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+import { AppSidebar } from '@/components/AppSidebar';
 
 function App() {
   return (
     <ThemeProvider>
-      <div className='flex min-h-svh flex-col items-center justify-center'>
-        <Button>Click me</Button>
-      </div>
+      <SidebarProvider>
+        <AppSidebar/>
+        <SidebarInset></SidebarInset>
+      </SidebarProvider>
     </ThemeProvider>
   );
 }
