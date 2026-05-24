@@ -4,6 +4,7 @@ import { AppSidebar } from '@/components/AppSidebar';
 import { Header } from '@/components/Header';
 import { Page, PageHeader } from '@/components/Page';
 import { DashboardCard } from '@/components/DashboardCard';
+import { AppBarChart } from '@/components/AppBarChart';
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
                   title='Vendor breakdown'
                   description='Keep track of vendors and their security ratings.'
                   buttonText='View full report'
-                />
+                >
+                  <AppBarChart />
+                </DashboardCard>
               </div>
             </Page>
           </main>

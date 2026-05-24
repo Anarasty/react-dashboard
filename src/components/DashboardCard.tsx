@@ -58,8 +58,11 @@ export const DashboardCard = ({
       <CardContent className='grid grid-cols-1 grow'>{children}</CardContent>
 
       <CardFooter className='border-t'>
-        <Button variant="outline" className='ml-auto'>
-            {buttonText}
+        <Button
+          variant='outline'
+          className='ml-auto'
+        >
+          {buttonText}
         </Button>
       </CardFooter>
     </Card>
