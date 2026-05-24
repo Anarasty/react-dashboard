@@ -31,7 +31,7 @@ export const AppSidebar = () => {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <Logo variant={isMobile ? 'icon' : 'default'} />
+            <Logo variant={isMobile ? 'default' : 'icon'} />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -41,7 +41,10 @@ export const AppSidebar = () => {
           <SidebarGroupContent>
             <SidebarMenu>
               {APP_SIDEBAR.primaryNav.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem
+                  tootlip={item.title}
+                  key={item.title}
+                >
                   <SidebarMenuButton asChild>
                     <a href={item.url}>
                       <item.Icon />
@@ -53,14 +56,17 @@ export const AppSidebar = () => {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-        {/* /// */}
+        {/* sds */}
         {isMobile && (
           <SidebarGroup className='mt-auto'>
             <SidebarGroupContent>
               <SidebarMenu>
                 {APP_SIDEBAR.secondaryNav.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton
+                      tootlip={item.title}
+                      asChild
+                    >
                       <a href={item.url}>
                         <item.Icon />
                         <span>{item.title}</span>
