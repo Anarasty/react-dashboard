@@ -3,6 +3,7 @@ import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { Header } from '@/components/Header';
 import { Page, PageHeader } from '@/components/Page';
+import { DashboardCard } from '@/components/DashboardCard';
 
 function App() {
   return (
@@ -14,7 +15,15 @@ function App() {
 
           <main>
             <Page>
-              <PageHeader/>
+              <PageHeader />
+
+              <div className=''>
+                <DashboardCard
+                  title='Vendor breakdown'
+                  description='Keep track of vendors and their security ratings.'
+                  buttonText='View full report'
+                />
+              </div>
             </Page>
           </main>
         </SidebarInset>
