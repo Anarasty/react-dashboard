@@ -5,7 +5,7 @@ import { AppSidebar } from '@/components/AppSidebar';
 function App() {
   return (
     <ThemeProvider>
-      <SidebarProvider>
+      <SidebarProvider open={false}>
         <AppSidebar/>
         <SidebarInset></SidebarInset>
       </SidebarProvider>
