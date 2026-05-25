@@ -5,6 +5,7 @@ import { Header } from '@/components/Header';
 import { Page, PageHeader } from '@/components/Page';
 import { DashboardCard } from '@/components/DashboardCard';
 import { AppBarChart } from '@/components/AppBarChart';
+import { AppRadialChart } from '@/components/AppradialChart';
 
 function App() {
   return (
@@ -25,6 +26,14 @@ function App() {
                   buttonText='View full report'
                 >
                   <AppBarChart />
+                </DashboardCard>
+
+                <DashboardCard
+                  title='Vendor monitored'
+                  description="You're using 80% of available spots."
+                  buttonText='Upgrade plan'
+                >
+                  <AppRadialChart />
                 </DashboardCard>
               </div>
             </Page>
