@@ -5,7 +5,7 @@ import { Header } from '@/components/Header';
 import { Page, PageHeader } from '@/components/Page';
 import { DashboardCard } from '@/components/DashboardCard';
 import { AppBarChart } from '@/components/AppBarChart';
-import { AppRadialChart } from '@/components/AppradialChart';
+import { AppRadialChart2 } from './components/AppRadialChart2';
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
                   description="You're using 80% of available spots."
                   buttonText='Upgrade plan'
                 >
-                  <AppRadialChart />
+                  <AppRadialChart2/>
                 </DashboardCard>
               </div>
             </Page>
