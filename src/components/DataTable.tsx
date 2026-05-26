@@ -21,6 +21,9 @@ import type {
   ColumnFiltersState,
   SortingState,
 } from '@tanstack/react-table';
+import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
+import { useState } from 'react';
+import { InputGroup, InputGroupInput } from './ui/input-group';
 
 interface Props<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -33,14 +36,53 @@ export const DataTable = <Data, Value>({
   columns,
   data,
 }: Props<Data, Value>) => {
+  const [filter, setFilter] = useState<Filter>('view-all');
+  const [columnFilters, setColumnFilers] = useState<ColumnFiltersState>([]);
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [rowSelection, setRowSelection] = useState({});
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnFiltersChange: setColumnFilers,
+    state: {
+      columnFilters,
+    },
   });
 
   return (
     <div className=''>
+      <div className=''>
+        <ToggleGroup
+          type='single'
+          variant='outline'
+          value={filter}
+          onValueChange={(value: Filter) => setFilter(value)}
+        >
+          <ToggleGroupItem value='view-all'>View All</ToggleGroupItem>
+          <ToggleGroupItem value='monitored'>Monitored</ToggleGroupItem>
+          <ToggleGroupItem value='unmonitored'>Unmonitored</ToggleGroupItem>
+        </ToggleGroup>
+
+        <div className=''>
+          <InputGroup>
+            <InputGroupInput
+              placeholder='Search'
+              value={
+                (table.getColumn('name')?.getFilterValue() as string) ?? ''
+              }
+              onChange={(event) =>
+                table
+                  .getColumn('name')
+                  ?.setFilterValue(event.currentTarget.value)
+              }
+            />
+          </InputGroup>
+        </div>
+      </div>
+
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
