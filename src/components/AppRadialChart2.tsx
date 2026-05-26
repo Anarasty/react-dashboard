@@ -1,15 +1,20 @@
 import { VENDOR_MONITORED } from '@/constants';
-import { ChartContainer, type ChartConfig } from '@/components/ui/chart';
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  type ChartConfig,
+} from '@/components/ui/chart';
 import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from 'recharts';
 
 const chartConfig = {
   monitored: {
     label: 'Total monitored',
-    color: 'var(--chart-1)',
+    color: 'var(--chart-4)',
   },
   limit: {
     label: 'Available limit',
-    color: 'var(--chart-2)',
+    color: 'var(--chart-1)',
   },
 } satisfies ChartConfig;
 
@@ -17,12 +22,22 @@ export const AppRadialChart2 = () => {
   const totalLimits = VENDOR_MONITORED[0].monitored + VENDOR_MONITORED[0].limit;
 
   return (
-    <ChartContainer config={chartConfig}>
+    <ChartContainer
+      config={chartConfig}
+      className='w-[170px] h-[100p]'
+    >
       <RadialBarChart
         data={VENDOR_MONITORED}
-        innerRadius={90}
-        outerRadius={140}
-        cy={104}
+        //! Original properties
+        // innerRadius={90}
+        // outerRadius={140}
+        // cy={104}
+        // startAngle={0}
+        // endAngle={180}
+        //? My properties
+        innerRadius={65}
+        outerRadius={85}
+        cy={90}
         startAngle={0}
         endAngle={180}
       >
@@ -67,6 +82,11 @@ export const AppRadialChart2 = () => {
             }}
           ></Label>
         </PolarRadiusAxis>
+
+        <ChartTooltip
+          cursor={false}
+          content={<ChartTooltipContent />}
+        />
       </RadialBarChart>
     </ChartContainer>
   );

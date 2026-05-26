@@ -6,6 +6,7 @@ import { Page, PageHeader } from '@/components/Page';
 import { DashboardCard } from '@/components/DashboardCard';
 import { AppBarChart } from '@/components/AppBarChart';
 import { AppRadialChart2 } from './components/AppRadialChart2';
+import { TrendingUpIcon } from 'lucide-react';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
             <Page>
               <PageHeader />
 
-              <div className=''>
+              <div className='grid gap-6 py-8 md:grid-cols-2 lg:grid-cols-[1fr_360px]'>
                 <DashboardCard
                   title='Vendor breakdown'
                   description='Keep track of vendors and their security ratings.'
@@ -33,7 +34,26 @@ function App() {
                   description="You're using 80% of available spots."
                   buttonText='Upgrade plan'
                 >
-                  <AppRadialChart2/>
+                  <div className='flex justify-between items-start'>
+                    <AppRadialChart2 />
+                    <div className='flex items-center gap-2'>
+                      <TrendingUpIcon
+                        size={20}
+                        className='text-chart-3'
+                      />
+                      <span className='text-chart-3'>10%</span>
+                    </div>
+                  </div>
+
+                  <div className='mt-6 lg:mt-8'>
+                    <p className='font-medium'>
+                      You've almost reached your limit
+                    </p>
+                    <p className='text-muted-foreground'>
+                      You have used 80$ of your available spots. Upgrade plan to
+                      monitor more vendors.
+                    </p>
+                  </div>
                 </DashboardCard>
               </div>
             </Page>
