@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { PlusIcon, UploadCloudIcon } from 'lucide-react';
 import { DataTable } from '@/components/DataTable';
+import { columns } from '@/components/Columns';
 
 export const DashboardTable = () => {
   return (
@@ -36,7 +37,10 @@ export const DashboardTable = () => {
         </div>
       </div>
 
-      <DataTable />
+      <DataTable
+        columns={columns}
+        data={VENDOR_MOVEMENTS}
+      />
     </div>
   );
 };
