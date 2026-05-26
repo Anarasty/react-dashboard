@@ -7,6 +7,7 @@ import { DashboardCard } from '@/components/DashboardCard';
 import { AppBarChart } from '@/components/AppBarChart';
 import { AppRadialChart2 } from './components/AppRadialChart2';
 import { TrendingUpIcon } from 'lucide-react';
+import { DashboardTable } from '@/components/DashboardTable';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
             <Page>
               <PageHeader />
 
-              <div className='grid gap-6 py-8 md:grid-cols-2 lg:grid-cols-[1fr_360px]'>
+              <div className='grid gap-6 py-8 md:grid-cols-[1fr_360px]'>
                 <DashboardCard
                   title='Vendor breakdown'
                   description='Keep track of vendors and their security ratings.'
@@ -56,6 +57,8 @@ function App() {
                   </div>
                 </DashboardCard>
               </div>
+
+              <DashboardTable />
             </Page>
           </main>
         </SidebarInset>

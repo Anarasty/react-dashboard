@@ -66,9 +66,9 @@ export const AppBarChart = () => {
 
         {!isMobile && (
           <ChartLegend
-            // content={
-            //   <p className='font-semibold text-muted-foreground mt-2'>Month</p>
-            // }
+          // content={
+          //   <p className='font-semibold text-muted-foreground mt-2'>Month</p>
+          // }
           />
         )}
       </BarChart>
