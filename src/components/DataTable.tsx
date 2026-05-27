@@ -24,7 +24,12 @@ import type {
 import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
 import { useState } from 'react';
 import { InputGroup, InputGroupAddon, InputGroupInput } from './ui/input-group';
-import { ListFilterIcon, SearchIcon } from 'lucide-react';
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ListFilterIcon,
+  SearchIcon,
+} from 'lucide-react';
 import { Kbd } from './ui/kbd';
 import { Button } from './ui/button';
 
@@ -50,8 +55,14 @@ export const DataTable = <Data, Value>({
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onColumnFiltersChange: setColumnFilers,
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    onSortingChange: setSorting,
+    onRowSelectionChange: setRowSelection,
     state: {
       columnFilters,
+      sorting,
+      rowSelection,
     },
   });
 
@@ -149,6 +160,34 @@ export const DataTable = <Data, Value>({
           )}
         </TableBody>
       </Table>
+
+      <div className='flex gap-3 justify-between items-center border-t py-3 px-6'>
+        <p className='text-sm font-semibold text-muted-foreground max-md:mx-auto md:me-auto'>
+          Page {table.getState().pagination.pageIndex + 1} of{' '}
+          {table.getPageCount()}
+        </p>
+
+        <Button
+          variant='outline'
+          className='max-md:-order-1'
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          <ChevronLeftIcon className='md:hidden' />
+
+          <span className='max-md:hidden'>Previous</span>
+        </Button>
+
+        <Button
+          variant='outline'
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          <span className='max-md:hidden'>Next</span>
+
+          <ChevronRightIcon className='md:hidden' />
+        </Button>
+      </div>
     </div>
   );
 };
