@@ -23,7 +23,10 @@ import type {
 } from '@tanstack/react-table';
 import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
 import { useState } from 'react';
-import { InputGroup, InputGroupInput } from './ui/input-group';
+import { InputGroup, InputGroupAddon, InputGroupInput } from './ui/input-group';
+import { ListFilterIcon, SearchIcon } from 'lucide-react';
+import { Kbd } from './ui/kbd';
+import { Button } from './ui/button';
 
 interface Props<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -53,8 +56,8 @@ export const DataTable = <Data, Value>({
   });
 
   return (
-    <div className=''>
-      <div className=''>
+    <div className='max-md:-mx-4 max-lg:-mx-8'>
+      <div className='flex gap-4 p-6 max-lg:flex-col lg:justify-between lg:py-3'>
         <ToggleGroup
           type='single'
           variant='outline'
@@ -66,7 +69,7 @@ export const DataTable = <Data, Value>({
           <ToggleGroupItem value='unmonitored'>Unmonitored</ToggleGroupItem>
         </ToggleGroup>
 
-        <div className=''>
+        <div className='flex gap-3'>
           <InputGroup>
             <InputGroupInput
               placeholder='Search'
@@ -79,17 +82,32 @@ export const DataTable = <Data, Value>({
                   ?.setFilterValue(event.currentTarget.value)
               }
             />
+            <InputGroupAddon>
+              <SearchIcon />
+            </InputGroupAddon>
+
+            <InputGroupAddon align='inline-end'>
+              <Kbd>⌘K</Kbd>
+            </InputGroupAddon>
           </InputGroup>
+
+          <Button variant='outline'>
+            <ListFilterIcon />
+            <span className='max-lg:hidden'>Filters</span>
+          </Button>
         </div>
       </div>
 
       <Table>
-        <TableHeader>
+        <TableHeader className='bg-secondary/40 border-t'>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead
+                    key={header.id}
+                    className='px-4'
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -110,7 +128,10 @@ export const DataTable = <Data, Value>({
                 data-state={row.getIsSelected() && 'selected'}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell
+                    key={cell.id}
+                    className='p-4'
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
